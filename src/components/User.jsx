@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
 function User() {
+  const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
@@ -76,6 +78,12 @@ function User() {
             <span className="font-bold">Condicion fisica:</span>
             {userInfo.physical_condition}
           </p>
+          <button
+            className="bg-black text-white font-medium  rounded max-w-fit px-4 mx-auto my-2"
+            onClick={() => navigate("/userForm")}
+          >
+            Confirmar asistencia
+          </button>
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./components/AuthContext";
 import Login from "./components/Login";
 import AdminView from "./components/AdminView";
 import User from "./components/User";
-import { AuthProvider } from "./components/AuthContext";
+import UserForm from "./components/UserForm";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/admin" element={<AdminView />} />
             <Route path="/user" element={<User />} />
+            <Route path="/userForm" element={<UserForm />} />
           </Routes>
         </div>
       </Router>
