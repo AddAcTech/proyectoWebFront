@@ -17,7 +17,14 @@ const styles = StyleSheet.create({
   },
 });
 
-function InvitationPage({ guestNumber, name, id, event_location, award }) {
+function InvitationPage({
+  guestNumber,
+  name,
+  id,
+  event_location,
+  award,
+  apoyo,
+}) {
   return (
     <Page style={styles.page}>
       <View>
@@ -27,8 +34,13 @@ function InvitationPage({ guestNumber, name, id, event_location, award }) {
           {guestNumber}
         </Text>
         <Text>
-          Ubicado en {event_location} se le otorgara la presea {award}
+          Ubicado en {event_location} se le otorgará la presea {award}
         </Text>
+        {apoyo === "Necesito apoyo" ? (
+          <Text>Se le brindará apoyo por su Condicion fisica</Text>
+        ) : (
+          <Text>No necesita apoyo</Text>
+        )}
       </View>
     </Page>
   );

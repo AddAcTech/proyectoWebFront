@@ -85,7 +85,7 @@ function UserForm() {
 
   const MyDocument = () => (
     <Document>
-      {Array.from({ length: newInfo.guest }, (_, i) => (
+      {Array.from({ length: newInfo.guest + 1 }, (_, i) => (
         <InvitationPage
           key={i}
           guestNumber={i + 1}
@@ -93,6 +93,7 @@ function UserForm() {
           id={userInfo.id}
           award={userInfo.award}
           event_location={userInfo.event_location}
+          apoyo={newInfo.physical_condition}
         />
       ))}
     </Document>
@@ -119,7 +120,7 @@ function UserForm() {
           <label>Numero de acompañantes</label>
           <input
             type="number"
-            className="border border-black"
+            className="border border-black px-2"
             min={0}
             max={10}
             name="guest"
