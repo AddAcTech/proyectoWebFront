@@ -20,7 +20,7 @@ function Login() {
       const data = await response.json();
       if (response.status === 200) {
         updateToken(data.token); // Set the token globally
-        navigate("/userForm");
+        navigate("/user");
       } else if (data.message === "CURP incorrecto") {
         alert("CURP no encontrada");
         setCURP(""); // Limpia el campo de entrada
