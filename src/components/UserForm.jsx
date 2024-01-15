@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
-//AGREGAR IMPLEMENTO A LA BASE DE DATOS como string
-//si el pdf fue generado, no se puede generar otro (usando el pdf_invitsation como generated o no)
 function UserForm() {
   const { token } = useContext(AuthContext);
   const [newInfo, setNewInfo] = useState({
@@ -11,21 +9,24 @@ function UserForm() {
     physical_condition: "",
     pdf_invitation: "",
   });
+  const [userInfo, setUserInfo] = useState(null);
+
   const handleChange = (e) => {
     setNewInfo({
       ...newInfo,
       [e.target.name]: e.target.value,
     });
   };
+
   const actualizarInfo = async (e) => {
     e.preventDefault();
-    setNewInfo({
-      ...newInfo,
+
+    // Actualizar pdf_invitation en el estado antes de la solicitud
+    setNewInfo((prevInfo) => ({
+      ...prevInfo,
       pdf_invitation: "generated",
-    });
-    console.log(token);
-    console.log(newInfo);
-    console.log(userInfo.id);
+    }));
+
     try {
       const response = await fetch(
         `http://localhost:8000/api/profile/${userInfo.id}`,
@@ -45,9 +46,7 @@ function UserForm() {
     }
   };
 
-  const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
-    //console.log(token);
     const fetchUserInfo = async () => {
       try {
         const response = await fetch("http://localhost:8000/api/profile", {
