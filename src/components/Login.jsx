@@ -54,7 +54,7 @@ function Login() {
         </button>
         <button
           className="bg-black p-2 text-white font-medium rounded-sm"
-          onClick={() => navigate("/admin")}
+          onClick={() => navigate("/adminMenu")}
         >
           Admin
         </button>

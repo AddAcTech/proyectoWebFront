@@ -7,6 +7,7 @@ import User from "./components/User";
 import UserForm from "./components/UserForm";
 import AdminViewAsistiran from "./components/AdminViewAsistiran";
 import Register from "./components/Register";
+import AdminMenu from "./components/AdminMenu";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminView />} />
+            <Route path="/adminMenu" element={<AdminMenu />} />
             <Route path="/asist" element={<AdminViewAsistiran />} />
             <Route path="/user" element={<User />} />
             <Route path="/userForm" element={<UserForm />} />
