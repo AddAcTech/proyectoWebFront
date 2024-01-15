@@ -14,11 +14,11 @@ function AdminViewAsistiran() {
         const response = await fetch("http://localhost:8000/api/present");
         const data = await response.json();
         setUsers(data);
+        console.log(data)
       } catch (error) {
         console.log(error);
       }
     };
-
     fecthAwarded();
   }, []);
 
@@ -47,9 +47,9 @@ function AdminViewAsistiran() {
         <label>Filtrar por:</label>
         <select className="border" onChange={handleFilter}>
           <option value="">Todos</option>
-          <option value="Best Director">Diploma Eficiencia Y Eficacia</option>
-          <option value="Best Writer">Presea Juan de Dios Batiz</option>
-          <option value="Best Actress">Presea Carlos Vallejo Márquez</option>
+          <option value="Diploma de Eficiencia y Eficacia">Diploma Eficiencia Y Eficacia</option>
+          <option value="Presea Juan de Dios Bátiz">Presea Juan de Dios Batiz</option>
+          <option value="Presea Carlos Vallejo Márquez">Presea Carlos Vallejo Márquez</option>
         </select>
       </div>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
