@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
+import { Document, PDFDownloadLink } from "@react-pdf/renderer";
+import InvitationPage from "./InvitationPage";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
 function UserForm() {
   const { token } = useContext(AuthContext);
   const [newInfo, setNewInfo] = useState({
@@ -40,7 +46,9 @@ function UserForm() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      toast("Informacion actualizada en la base de datos");
+
+      //console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +65,7 @@ function UserForm() {
           },
         });
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setUserInfo(data);
       } catch (error) {
         console.log(error);
@@ -75,16 +83,31 @@ function UserForm() {
     );
   }
 
+  const MyDocument = () => (
+    <Document>
+      {Array.from({ length: newInfo.guest }, (_, i) => (
+        <InvitationPage
+          key={i}
+          guestNumber={i + 1}
+          name={userInfo.name}
+          id={userInfo.id}
+          award={userInfo.award}
+          event_location={userInfo.event_location}
+        />
+      ))}
+    </Document>
+  );
+
   return (
     <div className="h-screen flex flex-col justify-center items-center">
       <h1 className="text-black font-bold text-2xl my-2">
         Introduzca sus datos
       </h1>
-      <form className="shadow-lg p-6 rounded flex flex-col gap-2 border">
+      <form className="shadow-lg p-6 rounded flex flex-col gap-2 border border-black">
         <div className="flex gap-2">
           <label>Asistencia</label>
           <select
-            className="border"
+            className="border border-black"
             name="attendance_status"
             onChange={handleChange}
           >
@@ -96,7 +119,7 @@ function UserForm() {
           <label>Numero de acompañantes</label>
           <input
             type="number"
-            className="border"
+            className="border border-black"
             min={0}
             max={10}
             name="guest"
@@ -106,7 +129,7 @@ function UserForm() {
         <div className="flex gap-2 justify-between">
           <label>Condicion fisica</label>
           <select
-            className="border"
+            className="border border-black"
             name="physical_condition"
             onChange={handleChange}
           >
@@ -116,7 +139,7 @@ function UserForm() {
         </div>
         <div className="flex gap-2 justify-between">
           <label>Implemento</label>
-          <select className="border" onChange={handleChange}>
+          <select className="border border-black" onChange={handleChange}>
             <option value="Ninguno">Ninguno</option>
             <option value="Baston">Baston</option>
             <option value="Muletas">Muletas</option>
@@ -129,7 +152,17 @@ function UserForm() {
         >
           Generar invitacion
         </button>
+        <PDFDownloadLink
+          document={<MyDocument />}
+          fileName="invitaciones.pdf"
+          className="bg-black text-white font-medium rounded px-4 mt-2 text-center"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Cargando documento..." : "Descargar documento"
+          }
+        </PDFDownloadLink>
       </form>
+      <ToastContainer />
     </div>
   );
 }

@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
 function Login() {
   const [CURP, setCURP] = useState("");
   const { updateToken } = useContext(AuthContext);
@@ -22,7 +25,7 @@ function Login() {
         updateToken(data.token); // Set the token globally
         navigate("/user");
       } else if (data.message === "CURP incorrecto") {
-        alert("CURP no encontrada");
+        toast("CURP no encontrado");
         setCURP(""); // Limpia el campo de entrada
       }
       //console.log(data.token);
@@ -34,7 +37,7 @@ function Login() {
   return (
     <div className="h-screen flex flex-col justify-center">
       <h1 className="font-bold text-2xl text-center mb-2">INICIAR SESION</h1>
-      <form className="shadow-lg flex flex-col gap-2 p-4 rounded border border-sl">
+      <form className="shadow-lg flex flex-col gap-2 p-4 rounded border border-black">
         <div className="flex gap-2 items-center">
           <label className="font-bold">Ingrese su CURP</label>
           <input
@@ -59,6 +62,7 @@ function Login() {
           Admin
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }

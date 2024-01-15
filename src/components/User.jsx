@@ -38,7 +38,7 @@ function User() {
 
   return (
     <div className="h-screen flex flex-col justify-center gap-2">
-      <div className="shadow-lg p-6 rounded">
+      <div className="shadow-lg p-6 rounded border border-black">
         <div className="grid gap-1 text-center">
           <h1 className="text-xl text-black font-medium">
             Bienvenido {userInfo.name}!

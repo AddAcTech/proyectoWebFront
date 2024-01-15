@@ -37,7 +37,7 @@ function Register() {
   return (
     <div className="h-screen flex flex-col gap-2 justify-center">
       <h1 className="text-2xl font-bold text-center">Registrar Usuario</h1>
-      <form className="flex flex-col gap-2 border shadow-lg p-4 rounded">
+      <form className="flex flex-col gap-2 border border-black shadow-lg p-4 rounded">
         <div className="flex justify-between gap-2">
           <label className="font-bold">CURP:</label>
           <input
@@ -45,7 +45,7 @@ function Register() {
             max={18}
             type="text"
             name="CURP"
-            className="border"
+            className="border border-black"
             onChange={handleChange}
           />
         </div>
@@ -54,7 +54,7 @@ function Register() {
           <input
             type="text"
             name="name"
-            className="border"
+            className="border border-black"
             onChange={handleChange}
           />
         </div>
@@ -63,7 +63,7 @@ function Register() {
           <input
             type="text"
             name="award"
-            className="border"
+            className="border border-black"
             onChange={handleChange}
           />
         </div>
@@ -72,7 +72,7 @@ function Register() {
           <input
             type="text"
             name="event_location"
-            className="border"
+            className="border border-black"
             onChange={handleChange}
           />
         </div>
@@ -81,7 +81,7 @@ function Register() {
           <input
             type="text"
             name="category"
-            className="border"
+            className="border border-black"
             onChange={handleChange}
           />
         </div>
